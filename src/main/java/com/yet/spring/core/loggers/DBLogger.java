@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -26,7 +27,7 @@ public class DBLogger extends AbstractLogger {
     }
 
     public void init() {
-        createDBSchema();
+        //createDBSchema();
         createTableIfNotExists();
         updateEventAutoId();
     }
@@ -106,6 +107,7 @@ public class DBLogger extends AbstractLogger {
     }
 
     public List<Event> getAllEvents() {
+        //для получения всего нескольких рядов таблицы
         List<Event> list = jdbcTemplate.query("select * from t_event", new RowMapper<Event>() {
             @Override
             public Event mapRow(ResultSet rs, int rowNum) throws SQLException {
